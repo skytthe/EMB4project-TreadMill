@@ -1,0 +1,10 @@
+package treadmill;
+
+message MarkerMessage {
+	optional string camera_id = 1;
+	required bool markerFound = 2;
+	optional int32 x = 3;
+	optional int32 y = 4;
+	optional sint32 error_x = 5;
+	optional sint32 error_y = 6;
+}
