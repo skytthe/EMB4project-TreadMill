@@ -9,7 +9,9 @@
 #include "find_markers.hpp"
 #include "Marker.hpp"
 
-#include "MarkerMessage.pb.h"
+#include "../common/MarkerMessage.pb.h"
+
+#include "../common/zhelpers.hpp"
 
 using namespace std;
 using namespace cv;
@@ -24,6 +26,10 @@ int main( int argc, char** argv )
 	// Verify that the version of the library that we linked against is
 	// compatible with the version of the headers we compiled against.
 	GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+	zmq::context_t context (1);
+	zmq::socket_t s(context, ZMQ_PUB);
+	s.bind ("tcp://192.168.50.83:5555");
 
 	VideoCapture camera;
 	camera.open(0);
@@ -131,6 +137,8 @@ string m;
 markerMessage.SerializeToString(&m);
 
 cout << m << endl;
+
+  s_send (s, m.c_str());
 
 treadmill::MarkerMessage newMarker;
 newMarker.ParseFromString(m);

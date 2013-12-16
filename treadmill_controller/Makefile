@@ -9,9 +9,6 @@ LIBS =  -lopencv_core -lopencv_imgproc -lopencv_nonfree -lopencv_highgui -lproto
 
 ####### Files
 OBJECTS =   main.o \
-            find_markers.o \
-            GeometryTypes.o \
-            Marker.o \
             ../common/MarkerMessage.pb.o
 
 TARGET = build/$(_TARGET_ARCH)/marker_detector

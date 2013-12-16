@@ -43,3 +43,5 @@ cmake_install.cmake
 install_manifest.txt
 
 marker_detection_desktop_test_application/build/
+marker_detector/build/
+treadmill_controller/build/
