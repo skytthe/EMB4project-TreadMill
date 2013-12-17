@@ -5,13 +5,14 @@ CXX = $(CROSS_COMPILE_PREFIX)g++
 CCFLAGS = -pipe -O3 -fmessage-length=0 -fPIC -Wno-deprecated -Wall -W -Wno-unused
 CXXFLAGS = -pipe -O3 -fmessage-length=0 -fPIC -Wno-deprecated -Wall -W -Wno-unused -std=c++0x
 
-LIBS =  -lopencv_core -lopencv_imgproc -lopencv_nonfree -lopencv_highgui -lprotobuf -lzmq
+LIBS = -lprotobuf -lzmq
 
 ####### Files
 OBJECTS =   main.o \
-            ../common/MarkerMessage.pb.o
+            ../common/MarkerMessage.pb.o \
+            serial.o
 
-TARGET = build/$(_TARGET_ARCH)/marker_detector
+TARGET = build/$(_TARGET_ARCH)/treadmill_controller
 
 first: all
 ####### Implicit rules

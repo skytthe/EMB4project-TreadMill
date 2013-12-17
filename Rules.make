@@ -34,8 +34,8 @@ LDFLAGS_Linux_x86 = -Wl,-rpath,/usr/local/lib
 
 ## Linux_x64
 CROSS_COMPILE_PREFIX_Linux_x64 =
-INCPATH_Linux_x64 =
-LDFLAGS_Linux_x64 = -Wl,-rpath,/usr/local/lib
+INCPATH_Linux_x64 = 
+LDFLAGS_Linux_x64 = -L/usr/local/lib
 
 ## D3
 CROSS_COMPILE_PREFIX_BBB = arm-linux-gnueabi-

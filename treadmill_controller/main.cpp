@@ -6,6 +6,9 @@
 
 #include "../common/MarkerMessage.pb.h"
 #include "../common/zhelpers.hpp"
+extern "C" {
+#include "serial.h"
+}
 
 using namespace std;
 
@@ -22,6 +25,11 @@ int main( int argc, char** argv )
 	s.connect ("tcp://192.168.50.83:5555");
   s.setsockopt( ZMQ_SUBSCRIBE, "", 0);
 
+  int fd = serialInit("/dev/ttyUSB0");
+  cout << "Started treadmill controller..." << endl;
+
+  int pwm_value = 650;
+
 
 	while(true)
 	{
@@ -32,11 +40,19 @@ int main( int argc, char** argv )
 	  cout << "markerFound: " << marker.markerfound() << endl;
     if(marker.markerfound())
     {
+      int difference = 410 - marker.x();
+      pwm_value += difference;
+      if(pwm_value < 600)
+        pwm_value = 600;
+      else if(pwm_value > 999)
+        pwm_value = 999;
 	    cout << "markerFound_x: " << marker.x() << endl;
 	    cout << "markerFound_y: " << marker.y() << endl;
     }
+    cout << "New PWM value: " << pwm_value << endl;
+    serialWriteSpeed(fd,pwm_value);
 	}
-
+  serialClose(fd);
 
   return 0;
 }
