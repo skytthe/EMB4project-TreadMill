@@ -40,8 +40,11 @@ int main( int argc, char** argv )
 	  cout << "markerFound: " << marker.markerfound() << endl;
     if(marker.markerfound())
     {
-      int difference = 410 - marker.x();
-      pwm_value += difference;
+      int difference = 310 - marker.x();
+      if(difference > 10)
+        pwm_value += (difference/10)*(difference/10);
+      else if(difference < -10)
+        pwm_value -= (difference/10)*(difference/10);
       if(pwm_value < 600)
         pwm_value = 600;
       else if(pwm_value > 999)

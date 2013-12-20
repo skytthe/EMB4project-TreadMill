@@ -1,0 +1,1 @@
+cmd_/home/kent/workspace/bbKernel2/kernel/kernel/encoder/encoder.ko := arm-linux-gnueabi-ld -EL -r  -T /home/kent/workspace/bbKernel2/kernel/kernel/scripts/module-common.lds --build-id  -o /home/kent/workspace/bbKernel2/kernel/kernel/encoder/encoder.ko /home/kent/workspace/bbKernel2/kernel/kernel/encoder/encoder.o /home/kent/workspace/bbKernel2/kernel/kernel/encoder/encoder.mod.o
